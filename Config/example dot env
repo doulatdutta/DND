@@ -1,0 +1,11 @@
+# OpenAI API Key
+OPENAI_API_KEY=
+
+
+# Google Search API Key (if applicable)
+GOOGLE_API_KEY=
+
+# Other configurations
+DATABASE_URL=sqlite:///Common_Memory/common_memory.sql
+
+

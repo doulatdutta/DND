@@ -1,0 +1,71 @@
+
+
+# Others
+html5lib
+PyPDF2
+openai
+webdriver-manager
+setuptools
+
+# Data manipulation and analysis
+pandas
+numpy
+
+# Data visualization
+matplotlib
+seaborn
+plotly
+
+# Machine learning
+scikit-learn
+statsmodels
+xgboost
+
+# Web scraping and APIs
+requests
+beautifulsoup4
+bs4
+lxml
+yfinance
+
+# Natural Language Processing (NLP)
+nltk
+textblob
+vaderSentiment
+
+# Database and SQL
+SQLAlchemy
+
+# Environment variables management
+python-dotenv
+
+# Development tools
+jupyter
+ipykernel
+
+# Additional libraries for alert management and notifications
+twilio
+
+# Technical analysis
+TA-Lib
+
+# Streamlit
+streamlit
+
+#for chrome
+selenium
+
+
+
+#pip install TA_Lib-0.4.32-cp312-cp312-win_amd64.whl
+
+
+# #Problem 
+# Download a YouTube video
+
+# #Solution
+# 1. cd to the desired location to download
+# 2. Run instrument "bash /instruments/default/yt_download/yt_download.sh <url>" with your video URL
+# 3. Wait for the terminal to finish 
+
+

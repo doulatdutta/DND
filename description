@@ -1,0 +1,587 @@
+# 
+
+DND_Project/
+│
+├── main.py                    # Core DND logic and workflow management
+│
+├── Pdf_reader/
+│   └── pdf_reader.py          # Handles PDF reading and learning
+│
+├── Websearch/
+│   └── websearch.py           # Searches and learns from websites
+│
+├── Chrome/
+│   └── chrome.py              # Interacts with web pages via Google Chrome
+│
+├── Tool_maker/
+│   └── tool_maker.py          # Creates tools, installs packages
+│
+├── Agent/
+│   └── agent.py               # Creates and manages agents
+│
+├── Stock_analyzer_5/
+│   ├── stock_analyzer.py      # Coordinates stock analysis workflow and assigns agents
+│   ├── news_researcher.py     # Collects and preprocesses financial news
+│   ├── data_engineer.py       # Handles stock and financial data collection
+│   ├── data_scientist.py      # Performs feature engineering, model training, and evaluation
+│   ├── frontend_developer.py  # Generates stock charts and interactive graphs
+│   ├── backend_developer.py   # Manages alerts and notification system
+│   └── quantitative_analyst.py# Performs risk factor and post-prediction analysis
+│
+├── Code_editor/
+│   └── code_editor.py         # Standalone tool for code learning and editing
+│
+├── common_memory.sql          # SQL database for shared knowledge
+├── .env                       # API keys and configurations for OpenAI/Gemini and stock data APIs
+├── requirement.txt  
+├── Readme.md
+├── Lcense
+└── input/
+    └── pdfs/                  # PDFs to be analyzed by Pdf_reader
+
+
+## Module Descriptions
+
+1. main.py (Core DND Logic and Workflow Management)
+Role: Acts as the central controller, managing user interactions, designing workflows, and delegating tasks to various modules.
+Capabilities:
+Receives and processes user inputs.
+Utilizes OpenAI/Gemini APIs to understand and analyze tasks.
+Creates and manages workflows (sequential or hierarchical).
+Communicates with all modules except Code_editor.
+Accesses and updates common_memory.sql.
+Coordinates with Agent module to spawn and manage agents.
+Provides final output to the user.
+2. Pdf_reader Module
+Files: pdf_reader.py
+Role: Reads, analyzes, and learns from PDFs placed in the input/pdfs/ folder.
+Capabilities:
+Extracts text and data from PDF files.
+Uses OpenAI/Gemini APIs to summarize and understand content.
+Stores extracted knowledge in common_memory.sql for future use.
+3. Websearch Module
+Files: websearch.py
+Role: Conducts web searches and learns from the retrieved content.
+Capabilities:
+Searches websites directly or via the Chrome module.
+Extracts and analyzes relevant information using OpenAI/Gemini APIs.
+Stores insights and data in common_memory.sql.
+4. Chrome Module
+Files: chrome.py
+Role: Automates interactions with web pages through Google Chrome.
+Capabilities:
+Opens and navigates websites as instructed by Websearch or main.py.
+Clicks links, fills forms, and interacts with dynamic web elements.
+Captures on-screen data and sends it to OpenAI/Gemini APIs for analysis.
+5. Tool_maker Module
+Files: tool_maker.py
+Role: Creates, installs, and manages external tools and packages.
+Capabilities:
+Generates scripts or tools based on requirements from main.py or other modules.
+Installs necessary packages using terminal commands.
+Integrates new tools into the project directory.
+Uses OpenAI/Gemini APIs to assist in tool creation and installation processes.
+6. Agent Module
+Files: agent.py
+Role: Manages the creation and supervision of multiple agents.
+Capabilities:
+Spawns subordinate agents as required by main.py or other modules.
+Assigns specific tasks to agents based on workflow requirements.
+Facilitates inter-agent communication and coordination.
+Ensures agents utilize common_memory.sql for knowledge sharing.
+Requests Tool_maker to install tools if agents require new functionalities.
+7. Stock_analyzer Module
+Directory: Stock_analyzer/
+Files:
+`stock_analyzer.py`
+`news_researcher.py`
+`data_engineer.py`
+`data_scientist.py`
+`frontend_developer.py`
+`backend_developer.py`
+`quantitative_analyst.py`
+Role: Comprehensive module for stock market analysis and prediction.
+Capabilities:
+Coordinates the entire stock analysis workflow.
+Assigns tasks to subordinate agents for specific functions.
+Utilizes OpenAI/Gemini APIs for data analysis and decision-making.
+Implements feedback loops to improve prediction accuracy over time.
+Subordinate Agents within Stock_analyzer
+
+stock_analyzer.py
+
+Role: Central controller for stock analysis tasks.
+Tasks:
+Receives user input (e.g., stock symbols, analysis parameters).
+Analyzes and understands requests using OpenAI/Gemini APIs.
+Assigns tasks to subordinate agents.
+Integrates historical data checks to enhance prediction accuracy.
+Compiles and presents final analysis and predictions to the user.
+
+news_researcher.py (News Collection & Preprocessing)
+
+Task: Gather and preprocess latest news impacting the Indian and foreign stock markets.
+Steps:
+Use APIs or web scraping to collect news articles from platforms like Moneycontrol, Economic Times, Livemint.
+Collect relevant social media data from Twitter, Reddit, and forums like TradingView.
+Apply NLP techniques to analyze sentiment (positive, negative, neutral) using OpenAI/Gemini APIs.
+Store sentiment data in common_memory.sql for future modeling.
+
+data_engineer.py (Data Collection & Preprocessing)
+
+Task: Gather and preprocess data for relevant companies in the Indian stock market.
+Steps:
+Use financial APIs or web search tools to collect stock data (OHLCV: Open, High, Low, Close, Volume), company financials, and news sentiment.
+Aggregate historical stock prices from NSE/BSE.
+Clean, normalize, and structure the data.
+Store data in a relational database (e.g., MySQL, Postgres) or data warehouse (e.g., BigQuery).
+Handle missing data using interpolation or smoothing techniques.
+
+data_scientist.py (Feature Engineering & Model Development)
+
+Task: Create features and develop AI models for stock prediction.
+Steps:
+Add technical indicators like Moving Averages, RSI, MACD, Bollinger Bands.
+Integrate sentiment analysis data from news_researcher.py.
+Include company financial features (e.g., PE ratio, profit margin).
+Incorporate market-related features like sector performance and macroeconomic trends.
+Create target variables (e.g., next-day price or percentage change).
+Choose and implement algorithms (LSTM, XGBoost, Random Forest, ARIMA, Transformer-based models).
+Train models using historical data with cross-validation.
+Evaluate models based on metrics like RMSE, accuracy, F1 score.
+Select the best-performing model for stock prediction.
+Implement SHAP or LIME for prediction justification.
+
+frontend_developer.py (Graph Generation)
+
+Task: Generate interactive stock charts and prediction trends.
+Steps:
+Use libraries like Matplotlib, Plotly, or D3.js to create visualizations.
+Plot historical data, predictions, and technical indicators.
+Develop interactive charts that allow zooming and detailed views for each stock.
+Highlight important regions such as support and resistance levels.
+
+backend_developer.py (Alert Generation)
+
+Task: Generate and manage alerts based on stock predictions.
+Steps:
+Define conditions for alerts (e.g., predicted price change exceeds X%).
+Send alerts via email, SMS, or push notifications.
+Integrate real-time monitoring to adjust alerts based on actual market behavior during trading hours.
+
+quantitative_analyst.py (Risk Factor Analysis & Post-Prediction Analysis)
+
+Task: Assess risk and analyze predictions post-trading day.
+Steps:
+Calculate potential downside risk using Value at Risk (VaR) or Expected Shortfall.
+Estimate risk based on volatility metrics like Standard Deviation and Beta.
+Provide risk-based guidance to users (e.g., "This stock is predicted to rise, but with high volatility").
+Use backtesting to evaluate model performance over time.
+Generate detailed reports on each stock after the trading day, analyzing what went right or wrong.
+Suggest action plans if predictions are consistently inaccurate (e.g., model tweaking, feature engineering).
+
+8. Code_editor Module (Standalone)
+Files: code_editor.py
+Role: A separate tool for learning and editing code within the project.
+Capabilities:
+Learner Mode:
+Scans specified folders to understand code structure and workflow.
+Analyzes and saves code insights to common_memory.sql.
+
+Editor Mode:
+Modifies code based on user instructions (e.g., adding new modules or tools).
+Installs necessary packages and runs terminal commands.
+Edits any file within the project, ensuring seamless integration of new features.
+Utilizes OpenAI/Gemini APIs to analyze code and generate suggestions or modifications.
+
+
+# Common Components
+`Common Memory (SQL-Based)`
+File: common_memory.sql
+Role: Acts as a shared knowledge base for all modules.
+Capabilities:
+Stores extracted information from PDFs, web searches, news sentiment, financial data, and model insights.
+Ensures data consistency and accessibility across all modules.
+Facilitates knowledge sharing and efficient workflow management.
+`.env File`
+File: .env
+Role: Securely stores API keys and configuration settings.
+Capabilities:
+Houses API keys for OpenAI/Gemini and other external services (e.g., financial data APIs).
+Provides configurations necessary for module operations.
+Ensures sensitive information is kept secure and accessible only to authorized modules.
+Detailed Workflow Example
+Scenario: User requests a comprehensive analysis of a specific stock in the Indian market.
+
+User Input:
+
+The user interacts with main.py, requesting an analysis of, for example, "Reliance Industries."
+DND Module (main.py):
+
+Role: Receives the request and utilizes OpenAI/Gemini APIs to understand the requirements.
+Actions:
+Initiates the Stock_analyzer module by invoking stock_analyzer.py.
+Determines the need for specific agents based on the task complexity.
+Stock Analyzer Module (stock_analyzer.py):
+
+Role: Centralizes the stock analysis workflow.
+Actions:
+Assigns tasks to subordinate agents:
+news_researcher.py: Collects the latest news and social media sentiment about Reliance Industries.
+data_engineer.py: Gathers historical stock data and financial metrics.
+data_scientist.py: Performs feature engineering and model training.
+frontend_developer.py: Creates visualizations of stock trends and predictions.
+backend_developer.py: Sets up alert conditions based on predictions.
+quantitative_analyst.py: Conducts risk analysis and post-prediction reviews.
+News Researcher Agent (news_researcher.py):
+
+Actions:
+Scrapes news articles from platforms like Moneycontrol and Economic Times.
+Collects relevant tweets and Reddit posts about Reliance Industries.
+Analyzes sentiment using OpenAI/Gemini APIs.
+Stores sentiment scores and relevant data in common_memory.sql.
+Data Engineer Agent (data_engineer.py):
+
+Actions:
+Fetches OHLCV data and financial statements from APIs like NSE/BSE.
+Cleans and normalizes the data, handling any missing values.
+Saves processed data to the database for further analysis.
+Data Scientist Agent (data_scientist.py):
+
+Actions:
+Performs feature engineering by adding technical indicators and integrating sentiment data.
+Trains machine learning models (e.g., LSTM, XGBoost) using historical data.
+Evaluates model performance and selects the best-performing model.
+Uses SHAP or LIME to provide justification for predictions.
+Implements prediction probability calculations and assigns confidence levels.
+Frontend Developer Agent (frontend_developer.py):
+
+Actions:
+Generates interactive stock charts displaying historical data and predictions.
+Highlights key technical indicators and support/resistance levels.
+Provides an intuitive interface for users to explore the visualizations.
+Backend Developer Agent (backend_developer.py):
+
+Actions:
+Defines alert conditions based on prediction probabilities and risk assessments.
+Sends real-time alerts via email or SMS when certain thresholds are met.
+Ensures alerts are timely and accurately reflect model predictions.
+Quantitative Analyst Agent (quantitative_analyst.py):
+
+Actions:
+Calculates risk metrics like Value at Risk (VaR) and volatility.
+Provides risk-based guidance to the user.
+Conducts post-prediction analysis using backtesting to evaluate model performance.
+Generates detailed reports on prediction outcomes and suggests improvements.
+Feedback Loop:
+
+Monitoring & Feedback:
+Continuously tracks prediction accuracy in real-time.
+Logs incorrect predictions and analyzes causes (e.g., unexpected market shifts).
+Retrains models periodically with updated data to enhance accuracy.
+Implements a feedback loop to adjust algorithms based on past performance.
+Final Output:
+
+Presentation:
+Compiles all analysis, predictions, risk assessments, and visualizations.
+Presents a comprehensive report to the user, detailing predicted stock movements, confidence levels, associated risks, and actionable insights.
+Key Features and Best Practices
+Modularity: Each module and agent has a clearly defined role, making the system scalable and maintainable.
+API Integration: Utilizes OpenAI/Gemini APIs across modules for enhanced data analysis, understanding, and decision-making.
+Shared Knowledge Base: common_memory.sql ensures that all modules have access to consistent and up-to-date information.
+Security: Sensitive information like API keys is securely stored in the .env file.
+Autonomy: Agents operate independently but cohesively, allowing for parallel processing and efficient task management.
+Feedback Mechanism: Continuous monitoring and feedback loops ensure the system learns and improves over time.
+Extensibility: The framework is designed to accommodate additional modules or agents as needed, facilitating future expansions.
+Implementation Tips
+API Management:
+
+Ensure that all API keys in the .env file are kept secure and are not exposed in version control systems.
+Implement error handling for API requests to manage rate limits and potential downtimes gracefully.
+Database Optimization:
+
+Optimize common_memory.sql for quick read/write operations, especially as the amount of stored data grows.
+Implement indexing on frequently queried fields to enhance performance.
+Agent Coordination:
+
+Use messaging queues or event-driven architectures (e.g., RabbitMQ, Kafka) for efficient communication between agents.
+Ensure that agents can operate asynchronously to maximize parallel processing capabilities.
+Logging and Monitoring:
+
+Implement comprehensive logging within each module to track operations, errors, and performance metrics.
+Use monitoring tools to oversee system health and agent performance in real-time.
+Testing:
+
+Develop unit and integration tests for each module to ensure reliability and correctness.
+Perform regular backtesting of stock predictions to validate model performance and accuracy.
+Documentation:
+
+Maintain clear and detailed documentation for each module and agent, outlining their functionalities, dependencies, and usage.
+Document the workflow processes to facilitate onboarding and future development.
+Conclusion
+This regenerated DND_Project framework provides a robust and comprehensive structure for your Python AI project. By incorporating the detailed Stock_analyzer module with its subordinate agents, the system is well-equipped to perform sophisticated stock market analysis and predictions. The modular design ensures that each component operates efficiently while maintaining seamless integration with the overall workflow. Leveraging OpenAI/Gemini APIs enhances the systems intelligence, enabling dynamic understanding and decision-making capabilities.
+
+Feel free to reach out if you need further customization or additional features integrated into this framework!
+
+
+# R1
+
+DND_Project/
+│
+├── main.py                     # Core AI logic, task management, and workflow coordination
+│
+├── Tools/                      # Tools required for specific tasks (PDF reading, web search, etc.)
+│   ├── pdf_reader.py           # Handles PDF reading and learning
+│   ├── websearch.py            # Searches and learns from websites
+│   ├── chrome.py               # Interacts with web pages via Google Chrome
+│   ├── tool_maker.py           # Creates tools, installs packages, and runs terminal commands
+│   ├── agent.py                # Manages multiple agents and assigns tasks
+│   ├── code_editor.py          # Analyzes and modifies code based on user requests or self-learning
+│   ├── knowledge_base.py       # Handles common memory (SQL database) to store learned knowledge
+│   ├── feedback_loop.py        # Analyzes performance of tasks and updates models accordingly
+│   ├── self_upgrader.py        # Enables self-modification and upgrades of the AI’s abilities
+│
+├── Modules/                    # Additional modules for AI tasks and workflows
+│   ├── task_understanding.py   # NLP model for task understanding and response generation
+│   ├── learning_engine.py      # Self-learning and analysis of web resources
+│   ├── task_execution.py       # Core module for executing tasks
+│   ├── reinforcement_learning.py # For learning from feedback and improving decision-making
+│   ├── code_generator.py       # Generates or modifies code to adapt to new tasks
+│
+├── Agents/                     # Agents responsible for handling specific workflows
+│   ├── search_agent.py         # Agent for searching the web and gathering information
+│   ├── code_agent.py           # Agent for code execution and modification
+│   ├── data_agent.py           # Agent for collecting data from sources and structuring it
+│   ├── feedback_agent.py       # Agent for analyzing success or failure of tasks and learning from it
+│
+├── Common_Memory/              # Stores knowledge and previously learned solutions
+│   ├── memory_handler.py       # Handler for storing and retrieving learned information
+│   ├── common_memory.sql       # SQL database for storing knowledge (could also be in a different format)
+│
+├── Self_Modification/          # For self-upgrading and modifying the assistants capabilities
+│   ├── upgrade_manager.py      # Manages version control and self-upgrading functionality
+│   ├── tool_installer.py       # Installs new tools or libraries as needed
+││
+├── Stock_analyzer/
+│   │ Stock_analyzer.py                # Interact with user for select sub module and provide final answer 
+│   ├── select_sector/
+│   │   ├── news_researcher.py         # Collects news and sentiment for sector analysis
+│   │   ├── data_engineer.py           # Gathers historical data and selects top 10 companies
+│   │   ├── data_scientist.py          # Predicts top 5 companies with probability > 80%
+│   │   ├── frontend_developer.py      # Visualizes stock predictions and trends
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   └── quantitative_analyst.py    # Performs risk analysis
+│   │
+│   ├── select_company/
+│   │   ├── news_researcher.py         # Collects news and sentiment for specific company
+│   │   ├── data_engineer.py           # Gathers historical data for the company
+│   │   ├── data_scientist.py          # Predicts stock movement for the company
+│   │   ├── frontend_developer.py      # Visualizes predictions and trends for the company
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   └── quantitative_analyst.py    # Conducts risk analysis
+│   │
+│   ├── overall_next_day/
+│   │   ├── news_researcher.py         # Collects top company news and sentiment
+│   │   ├── data_engineer.py           # Selects top companies based on financial health
+│   │   ├── data_scientist.py          # Predicts top 5 stocks for the next day
+│   │   ├── frontend_developer.py      # Visualizes stock trends and provides predictions
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   └── quantitative_analyst.py    # Performs risk analysis
+│   │
+│   ├── ipo/
+│   │   ├── news_researcher.py         # Collects news about upcoming IPOs
+│   │   ├── data_engineer.py           # Selects top companies based on historical data
+│   │   ├── data_scientist.py          # Predicts stock movement for the selected company
+│   │   ├── frontend_developer.py      # Visualizes IPO predictions and trends
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   └── quantitative_analyst.py    # Performs risk analysis
+│   │
+│   ├── historical/
+│   │   ├── data_scientist.py          # Performs feature engineering and stock rating
+│   │   ├── frontend_developer.py      # Visualizes trends and predictions
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   └── quantitative_analyst.py    # Conducts risk analysis
+│
+├── Websearch_Support/          # Modules supporting the web search functionality
+│   ├── search_scraper.py       # Scrapes search engine results for tutorials, code snippets, etc.
+│   ├── content_analyzer.py     # Analyzes the content found on websites
+│
+├── Config/                     # Configuration files for API keys, dependencies, and settings
+│   ├── .env                    # Stores API keys and configurations for web APIs, AI models, etc.
+│   ├── config.py               # Main configuration file for setting up parameters
+│
+├── input/                      # Input files such as PDFs, data files, or example projects
+│   ├── pdfs/                   # PDFs to be analyzed by pdf_reader
+│   ├── data_files/             # Data files or external datasets for analysis
+│
+├── output/                     # Stores the results of AI executions, reports, or logs
+│   ├── logs/                   # Logs of the system's activities, errors, and learning events
+│   ├── reports/                # Reports generated by the assistant, such as stock predictions or analysis
+│
+├── requirements.txt            # List of Python dependencies for the project
+├── README.md                   # Documentation for the AI assistant project
+└── License                     # License information for the project
+
+
+
+#R2
+
+
+DND_Project/
+│
+├── main.py                     # Core AI logic, task management, and workflow coordination
+│
+├── Tools/                      # Tools required for specific tasks (PDF reading, web search, etc.)
+│   ├── pdf_reader.py           # Handles PDF reading and learning
+│   ├── websearch.py            # Searches and learns from websites
+│   ├── chrome.py               # Interacts with web pages via Google Chrome
+│   ├── tool_maker.py           # Creates tools, installs packages, and runs terminal commands
+│   ├── agent.py                # Manages multiple agents and assigns tasks
+│   ├── code_editor.py          # Analyzes and modifies code based on user requests or self-learning
+│   ├── knowledge_base.py       # Handles common memory (SQL database) to store learned knowledge
+│   ├── feedback_loop.py        # Analyzes performance of tasks and updates models accordingly
+│   ├── self_upgrader.py        # Enables self-modification and upgrades of the AI’s abilities
+│
+├── Modules/                    # Additional modules for AI tasks and workflows
+│   ├── task_understanding.py   # NLP model for task understanding and response generation
+│   ├── learning_engine.py      # Self-learning and analysis of web resources
+│   ├── task_execution.py       # Core module for executing tasks
+│   ├── reinforcement_learning.py # For learning from feedback and improving decision-making
+│   ├── code_generator.py       # Generates or modifies code to adapt to new tasks
+│
+├── Agents/                     # Agents responsible for handling specific workflows
+│   ├── search_agent.py         # Agent for searching the web and gathering information
+│   ├── code_agent.py           # Agent for code execution and modification
+│   ├── data_agent.py           # Agent for collecting data from sources and structuring it
+│   ├── feedback_agent.py       # Agent for analyzing success or failure of tasks and learning from it
+│
+├── Common_Memory/              # Stores knowledge and previously learned solutions
+│   ├── memory_handler.py       # Handler for storing and retrieving learned information
+│   ├── common_memory.sql       # SQL database for storing knowledge (could also be in a different format)
+│
+├── Self_Modification/          # For self-upgrading and modifying the assistants capabilities
+│   ├── upgrade_manager.py      # Manages version control and self-upgrading functionality
+│   ├── tool_installer.py       # Installs new tools or libraries as needed
+││
+├── Stock_analyzer/
+│   │ Stock_analyzer.py                # Interact with user for select sub module and provide final answer 
+│   ├── select_sector/
+│   │   ├── news_researcher.py         # Collects news and sentiment for sector analysis
+│   │   ├── data_engineer.py           # Gathers historical data and selects top 10 companies
+│   │   ├── data_scientist.py          # Predicts top 5 companies with probability > 80%
+│   │   ├── frontend_developer.py      # Visualizes stock predictions and trends
+│   │   ├── backend_developer.py       # Sets up alert conditions
+│   │   ├── prediction_analyzer.py     # Provide data in support of prediction to the user. like graph analyze, news summery.
+│   │   └── quantitative_analyst.py    # Performs risk analysis
+│
+├── Websearch_Support/           # Modules supporting the web search functionality
+│   ├── search_scraper.py       # Scrapes search engine results for tutorials, code snippets, etc.
+│   ├── content_analyzer.py     # Analyzes the content found on websites
+│
+├── Config/                     # Configuration files for API keys, dependencies, and settings
+│   ├── .env                    # Stores API keys and configurations for web APIs, AI models, etc.
+│   ├── config.py               # Main configuration file for setting up parameters
+│
+├── input/                      # Input files such as PDFs, data files, or example projects
+│   ├── pdfs/                   # PDFs to be analyzed by pdf_reader
+│   ├── data_files/             # Data files or external datasets for analysis
+│
+├── output/                     # Stores the results of AI executions, reports, or logs
+│   ├── logs/                   # Logs of the system's activities, errors, and learning events
+│   ├── reports/                # Reports generated by the assistant, such as stock predictions or analysis
+│
+├── requirements.txt            # List of Python dependencies for the project
+├── README.md                   # Documentation for the AI assistant project
+└── License                     # License information for the project
+
+
+
+#R3
+
+DND_Project/
+│
+├── main.py                                  # Core DND logic and workflow management
+│
+├── Modules/                                 # Contains all modules for task execution and self-learning
+│   ├── task_manager.py                      # Manages tasks and assigns them to specific modules
+│   ├── failure_handler.py                   # Handles task failures and solution discovery
+│   ├── tool_maker.py                        # Generates and updates tools as needed
+│   ├── code_upgrader.py                     # Updates system code and generates new tools/files
+│   ├── knowledge_base.py                    # Manages storage of learned solutions/tools
+│   ├── self_learning.py                     # AI module for self-learning and improvement
+│   └── memory_manager.py                    # Manages common memory for storing knowledge (SQL)
+│
+├── Tools/                                   # Contains specific tools required for various tasks
+│   ├── pdf_reader.py                        # Reads and analyzes PDFs
+│   ├── websearch.py                         # Searches the web for information, tutorials, etc.
+│   ├── chrome.py                            # Controls and interacts with websites via Google Chrome
+│   ├── installer.py                         # Manages installation of new tools or packages
+│   ├── agent.py                             # Manages multi-agent creation and task distribution
+│
+├── Stock_Analyzer/                          # Stock market analysis modules for prediction and research
+│   ├── Stock_analyzer.py                    # Main module for managing stock analysis workflows
+│   ├── select_sector/                       # Sector-based stock analysis
+│   │   ├── news_researcher.py               # Collects news and sentiment data for sector analysis
+│   │   ├── data_engineer.py                 # Collects historical data and filters companies
+│   │   ├── data_scientist.py                # Predicts top stocks with >80% probability
+│   │   ├── frontend_developer.py            # Creates stock prediction visualizations
+│   │   ├── backend_developer.py             # Manages alert conditions for predictions
+│   │   └── quantitative_analyst.py          # Performs risk analysis for the selected stocks
+│   │
+│   ├── select_company/                      # Company-specific stock analysis
+│   │   ├── news_researcher.py               # Gathers company-related news and sentiment
+│   │   ├── data_engineer.py                 # Collects historical stock data for the company
+│   │   ├── data_scientist.py                # Predicts stock movement for a specific company
+│   │   ├── frontend_developer.py            # Visualizes stock predictions for the company
+│   │   ├── backend_developer.py             # Manages alert conditions
+│   │   └── quantitative_analyst.py          # Conducts risk analysis for the company
+│   │
+│   ├── overall_next_day/                    # Overall stock prediction for the next day
+│   │   ├── news_researcher.py               # Gathers top company news and sentiment
+│   │   ├── data_engineer.py                 # Selects top companies based on financial metrics
+│   │   ├── data_scientist.py                # Predicts top 5 stocks for the next day
+│   │   ├── frontend_developer.py            # Creates visualizations of the stock trends
+│   │   ├── backend_developer.py             # Manages alerts for next day stock movement
+│   │   └── quantitative_analyst.py          # Performs risk analysis for overall market predictions
+│   │
+│   ├── ipo/                                 # IPO-specific stock analysis
+│   │   ├── news_researcher.py               # Collects news and sentiment about upcoming IPOs
+│   │   ├── data_engineer.py                 # Gathers historical IPO data and metrics
+│   │   ├── data_scientist.py                # Predicts stock movement after IPO
+│   │   ├── frontend_developer.py            # Visualizes IPO-related trends and predictions
+│   │   ├── backend_developer.py             # Sets up alerts for IPO stock movements
+│   │   └── quantitative_analyst.py          # Performs risk analysis for IPOs
+│   │
+│   ├── historical/                          # Historical stock data analysis
+│   │   ├── data_scientist.py                # Performs feature engineering and ratings based on data
+│   │   ├── frontend_developer.py            # Visualizes historical stock performance and predictions
+│   │   ├── backend_developer.py             # Manages alert conditions based on historical data
+│   │   └── quantitative_analyst.py          # Conducts risk analysis for historical data trends
+│
+├── Common_Memory/                           # Common memory storage and handling
+│   ├── common_memory.sql                    # SQL database for storing shared knowledge
+│   ├── memory_handler.py                    # Manages retrieval and storage of knowledge
+│
+├── Websearch_Support/                       # Supporting modules for web searches
+│   ├── search_scraper.py                    # Scrapes web search results (tutorials, code snippets)
+│   ├── content_analyzer.py                  # Analyzes the scraped web content
+│
+├── Self_Modification/                       # Modules for self-modification and system upgrades
+│   ├── upgrade_manager.py                   # Manages system versioning and self-upgrades
+│   ├── tool_installer.py                    # Installs necessary tools or packages
+│
+├── Config/                                  # Configuration files for API keys, dependencies, and settings
+│   ├── .env                                 # API keys and configurations (OpenAI, web scraping, etc.)
+│   ├── config.py                            # Main configuration file for project settings
+│
+├── input/                                   # Input files (PDFs, data files)
+│   ├── pdfs/                                # PDF files for analysis by pdf_reader.py
+│   ├── data_files/                          # External datasets for stock analysis
+│
+├── output/                                  # Output files and logs generated by the system
+│   ├── logs/                                # Logs of system activity and task execution
+│   ├── reports/                             # Reports generated from stock analysis or other tasks
+│
+├── requirements.txt                         # Python dependencies required for the project
+├── README.md                                # Documentation for the DND project
+└── License                                  # License information for the project
