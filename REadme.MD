@@ -21,6 +21,7 @@ The project is structured as follows:
 DND_Project/
 │
 ├── main.py                                  # Core DND logic and workflow management
+
 │
 ├── Modules/                                 # Contains all modules for task execution and self-learning
 │   ├── task_manager.py                      # Manages tasks and assigns them to specific modules
